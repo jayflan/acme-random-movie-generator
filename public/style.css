@@ -1,0 +1,87 @@
+/*tags*/
+* {
+  box-sizing:border-box;
+} 
+/* #root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+ul {
+ list-style-type: none;
+ padding: 0;
+}
+li {
+  border-bottom: solid 1px gray;
+  padding: 0.5rem;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Open Sans', arial,sans-serif;
+  padding: 2rem;
+  letter-spacing: 0.03em;
+ 
+}
+div > button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button { 
+  padding: 1em 2em;
+  border: none;
+  font-size: 1em;
+  transition: all 1s ease;
+  outline: none;
+  letter-spacing: 0.1em;
+}
+#deleteButton { 
+  padding: 0.5em 1.5em;
+  margin: 0.5em;
+  border: none;
+  font-size: 0.5em;
+  transition: all 1s ease;
+  outline: none;
+  letter-spacing: 0.1em;
+ }
+ #starButton { 
+  padding: 0.5em 1.5em;
+  margin: 0.5em;
+  border: none;
+  font-size: 0.5em;
+  transition: all 1s ease;
+  outline: none;
+  letter-spacing: 0.1em;
+ }
+button.remove {
+ background-color: #ff0000;
+ color: white;
+}
+/* form */
+form {
+ display: flex;
+ flex-direction: column;
+ flex-grow: 2;
+ margin: 1em;
+}
+
+/* input {
+ padding: 0.3em;
+ margin: 0.5em 0;
+ font-size: 1.5em;
+} */
+
+button {
+ color: white;
+ background-color: #59A9E9;
+}
+
+button:hover {
+ background-color: #59A9C2;
+}
+
+button:disabled {
+ background-color: #ccc;
+}
