@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMovies } from './store';
+import Movies from './Movies';
 
 
 class App extends Component {
@@ -9,15 +10,13 @@ class App extends Component {
     this.props.load();
   }; 
 
-
   render() {
-    console.log(this.props)
     return (
-      // <Router>
+      <Router>
         <div id='main'>
-          <h1>Test</h1>
+            <Route exact path='/' component={Movies} />
         </div>
-      // </Router>
+      </Router>
     )
   }
 };
