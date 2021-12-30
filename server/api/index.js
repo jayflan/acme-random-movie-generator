@@ -1,5 +1,5 @@
-// const router = require('express').Router();
+const router = require('express').Router();
 
-// router.use('/movies', require('./movies'));
+router.use('/movies', require('./movies'));
 
-// module.exports = router;
+module.exports = router;
