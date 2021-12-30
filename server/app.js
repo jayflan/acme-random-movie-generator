@@ -16,17 +16,17 @@ app.use('/dist', express.static(path.join(__dirname, '..','dist')));
 
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'client','index.html')));
 
-// app.use('/api', require('./api')); //<--not working, switched api test/views into app.js
+app.use('/api', require('./api')); //<--not working, switched api test/views into app.js
   //found this in websocket workshop, isn't working there either?
 //api test views
-app.get('/api', async(req, res, next) => {
-  try {
-    res.send(await Movie.findAll());
-  }
-  catch(err) {
-    next(err)
-  }
-})
+// app.get('/api', async(req, res, next) => {
+//   try {
+//     res.send(await Movie.findAll());
+//   }
+//   catch(err) {
+//     next(err)
+//   }
+// })
 
 //error handling
 app.use((req, res, next) => {
