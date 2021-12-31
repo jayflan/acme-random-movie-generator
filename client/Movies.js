@@ -5,18 +5,18 @@ import { createMovie, deleteMovie } from './store';
 class Movies extends Component {
   constructor(props) {
     super(props);
-
   }
 
-  avgStars() {
-
-  }
 
   render() {
+    console.log(this.props);
     return (
       <div id='content'>
         <div>
-          <h4>`The average rating is ${this.avgStars()}`</h4>
+          <h4>{`The average rating is ${Math.round(this.props.movies.reduce((acc, movie) => {
+            acc += movie.star
+            return acc;
+            },0) / this.props.movies.length)}!`}</h4>
           <button onClick={()=>{this.props.createMovie()}}>Generate Random Movie Title</button>
         </div>
         <ul>
@@ -42,8 +42,16 @@ export default connect(
   ({ movies})=> {  
   // const movie = movies.find(currMovie => currMovie.id === match.params.id * 1)
     //above line turned off, using match.params.id not needed w/ spa
+    const avgStars = () => {
+      const result = movies.reduce((acc, currMovie) => {
+        acc += currMovie.star;
+        return acc;
+      },0);
+      return result / movies.length;
+    } 
   return {
-    movies
+    movies,
+    avgStars: () => avgStars()
   }
 },
 (dispatch, { history })=> {
