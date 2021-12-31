@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { fetchMovies } from './store';
 import Movies from './Movies';
 
-
 class App extends Component {
   componentDidMount(){
     this.props.load();
@@ -14,7 +13,7 @@ class App extends Component {
     return (
       <Router>
         <div id='main'>
-            <Route exact path='/' component={Movies} />
+          <Route exact path='/' component={Movies} />
         </div>
       </Router>
     )

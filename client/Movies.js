@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CreateMovie from './CreateMovie';
 
 const Movies = ({ movies })=> {
   return (
     <div id='content'>
-      <CreateMovie />
+      <div>
+        <button>Generate Random Movie Title</button>
+      </div>
       <ul>
         {
           movies.map(movie => {
