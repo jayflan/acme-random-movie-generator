@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
+// import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchMovies } from './store';
 import Movies from './Movies';
@@ -11,11 +11,12 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      // <Router>
         <div id='main'>
-          <Route exact path='/' component={Movies} />
+          <Movies />
+          {/* <Route path='/' component={Movies} /> */}{/*turned off since only using a single component */}
         </div>
-      </Router>
+      // </Router>
     )
   }
 };

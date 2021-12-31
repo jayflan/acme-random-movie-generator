@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Movie } = require('../db').models;
+const faker = require('faker');
 
 router.get('/', async(req, res, next) => {
   try {
@@ -7,6 +8,19 @@ router.get('/', async(req, res, next) => {
   }
   catch(err) {
     next(err)
+  }
+});
+
+router.post('/', async(req, res, next) =>{
+  try{
+    const movie = await Movie.create({
+      movieName: faker.company.catchPhrase(),
+      star: 3
+    })
+    res.status(201).send(movie);
+  }
+  catch(err) {
+    next(err);
   }
 });
 

@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteMovie } from './store';
+import { createMovie, deleteMovie } from './store';
 
 class Movies extends Component {
   constructor(props) {
     super(props);
 
   }
-  
+
+  avgStars() {
+
+  }
+
   render() {
     return (
       <div id='content'>
         <div>
-          <button>Generate Random Movie Title</button>
+          <h4>`The average rating is ${this.avgStars()}`</h4>
+          <button onClick={()=>{this.props.createMovie()}}>Generate Random Movie Title</button>
         </div>
         <ul>
           {
@@ -34,16 +39,17 @@ class Movies extends Component {
 };
 
 export default connect(
-  ({ movies})=> {
+  ({ movies})=> {  
   // const movie = movies.find(currMovie => currMovie.id === match.params.id * 1)
+    //above line turned off, using match.params.id not needed w/ spa
   return {
     movies
-    // movie
   }
 },
 (dispatch, { history })=> {
   return {
-    deleteMovie: (id) => dispatch(deleteMovie(id, history))
+    deleteMovie: (id) => dispatch(deleteMovie(id, history)),
+    createMovie: () => dispatch(createMovie(history))
   }
 }
 )(Movies);
