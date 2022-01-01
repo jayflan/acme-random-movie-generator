@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const { Movie } = require('./db').models;
 
 //middleware
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 // app.use(express.json);  <==don't run on until react is up or page won't load
 
