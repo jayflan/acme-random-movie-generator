@@ -23,7 +23,6 @@ const syncAndSeed = async() => {
 };
 
 module.exports = {
-  conn,
   syncAndSeed,
   models: {
     Movie
