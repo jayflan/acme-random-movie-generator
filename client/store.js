@@ -7,6 +7,7 @@ import axios from 'axios';
 const SET_MOVIES = 'SET_MOVIES';
 const CREATE_MOVIE = 'CREATE_MOVIE';
 const DELETE_MOVIE = 'DELETE_MOVIE';
+const UPDATE_STARS = 'UPDATE_STARS'; 
 
 const moviesReducer = (state = [], action) => {
   if(action.type === SET_MOVIES) {
@@ -14,6 +15,14 @@ const moviesReducer = (state = [], action) => {
   }
   if(action.type === CREATE_MOVIE) {
     return [...state, action.movie]
+  }
+  if(action.type === UPDATE_STARS) {
+    // const subMovies = [...state.movies]
+    action.movie.star -=1
+    console.log(action)
+    return state.map((movie) => 
+      movie.id === action.movie.id ? action.movie : movie
+    );
   }
   if(action.type === DELETE_MOVIE) {
     return state.filter(movie => movie.id !== action.movie.id);
@@ -33,6 +42,13 @@ const setMovies = (movies) => {
 const _createMovie = (movie) => {
   return {
     type: CREATE_MOVIE,
+    movie
+  }
+};
+
+const _updateStars = (movie) => {
+  return {
+    type: UPDATE_STARS,
     movie
   }
 };
@@ -58,6 +74,14 @@ export const createMovie = (history)=> {
     const {data: created} = await axios.post('/api/movies')
     dispatch(_createMovie(created));
     // history.push('/'); <--turned since react-router turned off
+  }
+};
+
+export const updateStars = (movie, star) => {
+  return async(dispatch) => {
+    movie = (await axios.put(`/api/movies/${movie.id}`, movie)).data
+    // movie.star--;
+    dispatch(_updateStars(movie))
   }
 };
 

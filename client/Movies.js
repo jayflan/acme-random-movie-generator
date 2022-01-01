@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createMovie, deleteMovie } from './store';
+import { createMovie, updateStars, deleteMovie } from './store';
 
 class Movies extends Component {
   constructor(props) {
     super(props);
+    
+    
   }
 
 
   render() {
-    console.log(this.props);
     return (
       <div id='content'>
         <div>
@@ -26,7 +27,7 @@ class Movies extends Component {
                 <li key={movie.id}>
                   <button id='deleteButton' onClick={()=>{this.props.deleteMovie(movie.id)}}>x</button>
                   {`${movie.movieName}    (${movie.star})`}
-                  <button id='starButton'>-</button>
+                  <button id='starButton' onClick={()=>{this.props.updateStars(movie, movie.star - 1)}}>-</button>
                   <button id='starButton'>+</button>
                 </li>
               )
@@ -41,23 +42,16 @@ class Movies extends Component {
 export default connect(
   ({ movies})=> {  
   // const movie = movies.find(currMovie => currMovie.id === match.params.id * 1)
-    //above line turned off, using match.params.id not needed w/ spa
-    const avgStars = () => {
-      const result = movies.reduce((acc, currMovie) => {
-        acc += currMovie.star;
-        return acc;
-      },0);
-      return result / movies.length;
-    } 
+    //above line turned off, using match.params.id not needed w/ spa 
   return {
     movies,
-    avgStars: () => avgStars()
   }
 },
 (dispatch, { history })=> {
   return {
     deleteMovie: (id) => dispatch(deleteMovie(id, history)),
-    createMovie: () => dispatch(createMovie(history))
+    createMovie: () => dispatch(createMovie(history)),
+    updateStars: (movie, star) => dispatch(updateStars(movie, star))
   }
 }
 )(Movies);
