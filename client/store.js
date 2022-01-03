@@ -17,9 +17,6 @@ const moviesReducer = (state = [], action) => {
     return [...state, action.movie]
   }
   if(action.type === UPDATE_STARS) {
-    // const subMovies = [...state.movies]
-    action.movie.star -=1
-    console.log(action)
     return state.map((movie) => 
       movie.id === action.movie.id ? action.movie : movie
     );
@@ -69,7 +66,7 @@ export const fetchMovies = ()=> {
   }
 };
 
-export const createMovie = (history)=> {
+export const createMovie = ()=> {
   return async(dispatch)=> {
     const {data: created} = await axios.post('/api/movies')
     dispatch(_createMovie(created));
@@ -77,15 +74,23 @@ export const createMovie = (history)=> {
   }
 };
 
-export const updateStars = (movie, star) => {
+export const subtractStars = (movie) => {
+  movie = {...movie, star: movie.star - 1}
   return async(dispatch) => {
-    movie = (await axios.put(`/api/movies/${movie.id}`, movie)).data
-    // movie.star--;
+    movie = (await axios.put(`/api/movies/${movie.id}`,movie)).data
     dispatch(_updateStars(movie))
   }
 };
 
-export const deleteMovie = (id, history) => {
+export const addStars = (movie) => {
+  movie = {...movie, star: movie.star + 1}
+  return async(dispatch) => {
+    movie = (await axios.put(`/api/movies/${movie.id}`,movie)).data
+    dispatch(_updateStars(movie))
+  }
+};
+
+export const deleteMovie = (id) => {
   return async(dispatch) => {
     await axios.delete(`/api/movies/${id}`);
     dispatch(_deleteMovie({ id }));

@@ -7,7 +7,8 @@ const { Movie } = require('./db').models;
 //middleware
 // app.use(morgan('dev'));
 
-// app.use(express.json);  <==don't run on until react is up or page won't load
+//req body parsing middleware is important for updating!!!!!!
+app.use(express.json()); // Remember!!!: Don't forget ()!!!!
 
 //paths
 app.use(express.static(path.join(__dirname,'..','public')));

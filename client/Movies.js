@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createMovie, updateStars, deleteMovie } from './store';
+import { createMovie, subtractStars, addStars, deleteMovie } from './store';
 
 class Movies extends Component {
   constructor(props) {
@@ -27,8 +27,8 @@ class Movies extends Component {
                 <li key={movie.id}>
                   <button id='deleteButton' onClick={()=>{this.props.deleteMovie(movie.id)}}>x</button>
                   {`${movie.movieName}    (${movie.star})`}
-                  <button id='starButton' onClick={()=>{this.props.updateStars(movie, movie.star - 1)}}>-</button>
-                  <button id='starButton'>+</button>
+                  <button id='starButton' disabled={movie.star === 1} onClick={()=>{this.props.subtractStars(movie)}}>-</button>
+                  <button id='starButton' disabled={movie.star === 5} onClick={()=>{this.props.addStars(movie)}}>+</button>
                 </li>
               )
             })
@@ -51,7 +51,8 @@ export default connect(
   return {
     deleteMovie: (id) => dispatch(deleteMovie(id, history)),
     createMovie: () => dispatch(createMovie(history)),
-    updateStars: (movie, star) => dispatch(updateStars(movie, star))
+    subtractStars: (movie) => dispatch(subtractStars(movie)),
+    addStars: (movie) => dispatch(addStars(movie))
   }
 }
 )(Movies);

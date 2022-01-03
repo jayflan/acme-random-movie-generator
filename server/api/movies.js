@@ -27,7 +27,8 @@ router.post('/', async(req, res, next) =>{
 router.put('/:id', async(req, res, next) => {
   try {
     const stars = await Movie.findByPk(req.params.id);
-    res.send(await stars.update(req.body));
+    await stars.update(req.body);
+    res.send(stars);
   }
   catch(err) {
     next(err);
