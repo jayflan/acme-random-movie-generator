@@ -14,7 +14,7 @@ class App extends Component {
       // <Router>
         <div id='main'>
           <Movies />
-          {/* <Route path='/' component={Movies} /> */}{/*turned off since only using a single component */}
+          {/* <Route path='/' component={Movies} /> */}{/*turned off since only one component used*/}
         </div>
       // </Router>
     )

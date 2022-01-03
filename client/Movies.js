@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createMovie, subtractStars, addStars, deleteMovie } from './store';
+import { fetchMovies, createMovie, subtractStars, addStars, deleteMovie } from './store';
 
 class Movies extends Component {
   constructor(props) {
     super(props);
-    
-    
   }
 
 
   render() {
+    const { movies, createMovie, deleteMovie, subtractStars, addStars } = this.props;
     return (
       <div id='content'>
         <div>
-          <h4>{`The average rating is ${Math.round(this.props.movies.reduce((acc, movie) => {
+          <h4>{`The average rating is ${Math.round(movies.reduce((acc, movie) => {
             acc += movie.star
             return acc;
-            },0) / this.props.movies.length)}!`}</h4>
-          <button onClick={()=>{this.props.createMovie()}}>Generate Random Movie Title</button>
+            },0) / movies.length)}!`}</h4>
+          <button onClick={()=>{createMovie(), this.props.load()}}>Generate Random Movie Title</button>
         </div>
         <ul>
           {
-            this.props.movies.map(movie => {
+            movies.map(movie => {
               return (
                 <li key={movie.id}>
-                  <button id='deleteButton' onClick={()=>{this.props.deleteMovie(movie.id)}}>x</button>
+                  <button id='deleteButton' onClick={()=>{deleteMovie(movie.id), this.props.load()}}>x</button>
                   {`${movie.movieName}    (${movie.star})`}
-                  <button id='starButton' disabled={movie.star === 1} onClick={()=>{this.props.subtractStars(movie)}}>-</button>
-                  <button id='starButton' disabled={movie.star === 5} onClick={()=>{this.props.addStars(movie)}}>+</button>
+                  <button id='starButton' disabled={movie.star === 1} onClick={()=>{subtractStars(movie), this.props.load()}}>-</button>
+                  <button id='starButton' disabled={movie.star === 5} onClick={()=>{addStars(movie), this.props.load()}}>+</button>
                 </li>
               )
             })
@@ -49,6 +48,7 @@ export default connect(
 },
 (dispatch, { history })=> {
   return {
+    load: ()=> dispatch(fetchMovies()),
     deleteMovie: (id) => dispatch(deleteMovie(id, history)),
     createMovie: () => dispatch(createMovie(history)),
     subtractStars: (movie) => dispatch(subtractStars(movie)),

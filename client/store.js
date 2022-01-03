@@ -70,7 +70,7 @@ export const createMovie = ()=> {
   return async(dispatch)=> {
     const {data: created} = await axios.post('/api/movies')
     dispatch(_createMovie(created));
-    // history.push('/'); <--turned since react-router turned off
+    // history.push('/'); //<--turned since react-router turned off
   }
 };
 
@@ -90,7 +90,7 @@ export const addStars = (movie) => {
   }
 };
 
-export const deleteMovie = (id) => {
+export const deleteMovie = (id, movies) => {
   return async(dispatch) => {
     await axios.delete(`/api/movies/${id}`);
     dispatch(_deleteMovie({ id }));

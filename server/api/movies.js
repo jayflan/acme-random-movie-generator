@@ -4,10 +4,17 @@ const faker = require('faker');
 
 router.get('/', async(req, res, next) => {
   try {
-    res.send(await Movie.findAll());
+    const movies = await Movie.findAll({
+      order: [
+        ['star', 'DESC'],
+        ['movieName', 'ASC']
+      ]
+    });
+    res.send(movies);
   }
-  catch(err) {
-    next(err)
+  catch(ex) {
+    console.log(ex);
+    next(ex);
   }
 });
 
