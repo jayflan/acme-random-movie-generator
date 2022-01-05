@@ -2,7 +2,7 @@
 
 const app = require('./app');
 const { syncAndSeed } = require('./db/index')
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2000;
 
 const init = async() => {
   try {
