@@ -1,4 +1,4 @@
-const conn = require('./conn');
+const conn = require('./conn')
 const Movie = require('./Movie');
 const faker = require('faker');
 
