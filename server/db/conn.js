@@ -13,7 +13,8 @@ if(process.env.DATABASE_URL) {
         dialectOptions: {
             ssl: {  
               require: true,
-              ca: fs.readFileSync(`${__dirname}/us-east-1-bundle.pem`)
+              ca: fs.readFileSync(`${__dirname}/us-east-1-bundle.pem`),
+              rejectUnauthorized: false
             }
         }
     })
