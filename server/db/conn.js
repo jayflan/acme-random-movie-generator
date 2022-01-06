@@ -1,6 +1,6 @@
 
 const Sequelize = require('sequelize');
-// const fs = require('fs');
+const fs = require('fs');
 //go to this AWS page to download ssl certs for heroku deployment ssl:
   //https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html
   //place cert in same folder as this conn file
