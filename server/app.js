@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-
 //req body parsing middleware is important for updating!!!!!!
 app.use(express.json()); // Remember!!!: Don't forget ()!!!!
 
