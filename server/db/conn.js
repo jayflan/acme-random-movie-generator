@@ -14,6 +14,8 @@ if(process.env.DATABASE_URL) {
             ssl: {  
               require: true,
               ca: fs.readFileSync(`${__dirname}/us-east-1-bundle.pem`),
+              //reject line used with heroku due to getting self cert error
+              //reject line also works without ssl for heroku, though less secure?
               rejectUnauthorized: false
             }
         }
